@@ -1,0 +1,373 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<helpItems schema="maml" xmlns="http://msh">
+  <!-- Cmdlet: Get-RdsUserProperties -->
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Get-RdsUserProperties</command:name>
+      <command:verb>Get</command:verb>
+      <command:noun>RdsUserProperties</command:noun>
+      <maml:description>
+        <maml:para>Get RDS User properties in Active Directory</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This cmdlet can be used to read properties on the Remote Desktop Services Profile Tab.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <!-- Parameter set: __AllParameterSets -->
+      <command:syntaxItem>
+        <maml:name>Get-RdsUserProperties</maml:name>
+        <!-- Parameter: Identity -->
+        <command:parameter required="true" globbing="false" pipelineInput="true (ByValue)" position="named" aliases="Id">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>userPrincipalName, sAMAccountName or distinguishedName of an Active Directory user object.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <!-- Parameter: ServerName -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
+          <maml:name>ServerName</maml:name>
+          <maml:description>
+            <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <!-- Parameter: Identity -->
+      <command:parameter required="true" globbing="false" pipelineInput="true (ByValue)" position="named" aliases="Id">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>userPrincipalName, sAMAccountName or distinguishedName of an Active Directory user object.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" globbing="false" pipelineInput="true (ByValue)" position="named" aliases="Id">
+        <maml:name>Id</maml:name>
+        <maml:description>
+          <maml:para>userPrincipalName, sAMAccountName or distinguishedName of an Active Directory user object.</maml:para>
+          <maml:para>This is an alias of the Identity parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: ServerName -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
+        <maml:name>ServerName</maml:name>
+        <maml:description>
+          <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
+        <maml:name>DomainController</maml:name>
+        <maml:description>
+          <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
+          <maml:para>This is an alias of the ServerName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
+        <maml:name>DC</maml:name>
+        <maml:description>
+          <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
+          <maml:para>This is an alias of the ServerName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+        <maml:description>
+          <maml:para>userPrincipalName, sAMAccountName or distinguishedName of an Active Directory user object.</maml:para>
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <!-- OutputType: RdsUser -->
+      <command:returnValue>
+        <dev:type>
+          <maml:name>RdsUserProperties.RdsUser</maml:name>
+          <maml:uri />
+        </dev:type>
+        <maml:description>
+          <maml:para>RDS user model.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:examples>
+      <command:example>
+        <maml:title>----------  EXAMPLE 1  ----------</maml:title>
+        <dev:code>Get-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD'</dev:code>
+      </command:example>
+      <command:example>
+        <maml:title>----------  EXAMPLE 2  ----------</maml:title>
+        <dev:code>Get-RDSUserProperties  -Identity Account1</dev:code>
+      </command:example>
+      <command:example>
+        <maml:title>----------  EXAMPLE 3  ----------</maml:title>
+        <dev:code>Get-RDSUserProperties  -Identity Account1@MyDomain.TLD</dev:code>
+      </command:example>
+    </command:examples>
+  </command:command>
+  <!-- Cmdlet: Set-RdsUserProperties -->
+  <command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10">
+    <command:details>
+      <command:name>Set-RdsUserProperties</command:name>
+      <command:verb>Set</command:verb>
+      <command:noun>RdsUserProperties</command:noun>
+      <maml:description>
+        <maml:para>Set RDS User properties in Active Directory</maml:para>
+      </maml:description>
+    </command:details>
+    <maml:description>
+      <maml:para>This cmdlet can be used to set properties on the Remote Desktop Services Profile Tab.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <!-- Parameter set: __AllParameterSets -->
+      <command:syntaxItem>
+        <maml:name>Set-RdsUserProperties</maml:name>
+        <!-- Parameter: Identity -->
+        <command:parameter required="true" globbing="false" pipelineInput="false" position="named" aliases="Id">
+          <maml:name>Identity</maml:name>
+          <maml:description>
+            <maml:para>distinguishedName of an Active Directory user objec.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <!-- Parameter: DenyLogon -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
+          <maml:name>DenyLogon</maml:name>
+          <maml:description>
+            <maml:para>Boolean value to allow or deny RDS access for the user.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">bool</command:parameterValue>
+          <dev:type>
+            <maml:name>System.Boolean</maml:name>
+            <maml:uri />
+          </dev:type>
+          <dev:defaultValue>False</dev:defaultValue>
+        </command:parameter>
+        <!-- Parameter: ServerName -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
+          <maml:name>ServerName</maml:name>
+          <maml:description>
+            <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <!-- Parameter: TerminalServicesHomeDirectory -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
+          <maml:name>TerminalServicesHomeDirectory</maml:name>
+          <maml:description>
+            <maml:para>Folder path for the users TS home drive.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <!-- Parameter: TerminalServicesHomeDrive -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
+          <maml:name>TerminalServicesHomeDrive</maml:name>
+          <maml:description>
+            <maml:para>Letter for the users TS home drive (including ':').</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <!-- Parameter: TerminalServicesProfilePath -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
+          <maml:name>TerminalServicesProfilePath</maml:name>
+          <maml:description>
+            <maml:para>Shared folder path for the users TS profile.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <!-- Parameter: Identity -->
+      <command:parameter required="true" globbing="false" pipelineInput="false" position="named" aliases="Id">
+        <maml:name>Identity</maml:name>
+        <maml:description>
+          <maml:para>distinguishedName of an Active Directory user objec.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" globbing="false" pipelineInput="false" position="named" aliases="Id">
+        <maml:name>Id</maml:name>
+        <maml:description>
+          <maml:para>distinguishedName of an Active Directory user objec.</maml:para>
+          <maml:para>This is an alias of the Identity parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: ServerName -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
+        <maml:name>ServerName</maml:name>
+        <maml:description>
+          <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
+        <maml:name>DomainController</maml:name>
+        <maml:description>
+          <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
+          <maml:para>This is an alias of the ServerName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
+        <maml:name>DC</maml:name>
+        <maml:description>
+          <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
+          <maml:para>This is an alias of the ServerName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: TerminalServicesProfilePath -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
+        <maml:name>TerminalServicesProfilePath</maml:name>
+        <maml:description>
+          <maml:para>Shared folder path for the users TS profile.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: TerminalServicesHomeDrive -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
+        <maml:name>TerminalServicesHomeDrive</maml:name>
+        <maml:description>
+          <maml:para>Letter for the users TS home drive (including ':').</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: TerminalServicesHomeDirectory -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
+        <maml:name>TerminalServicesHomeDirectory</maml:name>
+        <maml:description>
+          <maml:para>Folder path for the users TS home drive.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: DenyLogon -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
+        <maml:name>DenyLogon</maml:name>
+        <maml:description>
+          <maml:para>Boolean value to allow or deny RDS access for the user.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">bool</command:parameterValue>
+        <dev:type>
+          <maml:name>System.Boolean</maml:name>
+          <maml:uri />
+        </dev:type>
+        <dev:defaultValue>False</dev:defaultValue>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <!-- OutputType: RdsSetUserResult -->
+      <command:returnValue>
+        <dev:type>
+          <maml:name>RdsUserProperties.RdsSetUserResult</maml:name>
+          <maml:uri />
+        </dev:type>
+        <maml:description>
+          <maml:para>RDS set user result model.</maml:para>
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <command:examples>
+      <command:example>
+        <maml:title>----------  EXAMPLE 1  ----------</maml:title>
+        <dev:code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath '\\fs1\RDSProfile\Account1' -TerminalServicesHomeDrive 't:' -TerminalServicesHomeDirectory '\\fs2\RDSHome\Account1' -DenyLogo $false</dev:code>
+      </command:example>
+      <command:example>
+        <maml:title>----------  EXAMPLE 2  ----------</maml:title>
+        <dev:code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath $null -TerminalServicesHomeDirectory = $null -DenyLogon = $true</dev:code>
+      </command:example>
+    </command:examples>
+  </command:command>
+</helpItems>
