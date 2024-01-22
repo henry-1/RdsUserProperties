@@ -29,6 +29,6 @@ namespace RdsUserProperties
         /// <summary>
         /// <para type="description">Deny Logon</para>
         /// </summary>
-        public bool DenyLogon { get; set; }
+        public bool AllowLogon { get; set; }
     }
 }

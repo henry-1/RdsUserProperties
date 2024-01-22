@@ -88,7 +88,17 @@ namespace RdsUserProperties
                 }                
             } catch {
                 // do nothing
-            }            
+            }
+
+            try
+            {
+                var allowLogon = user.InvokeGet(propertyName: "AllowLogon").ToString();
+                rdsUser.AllowLogon = allowLogon.Equals("1");
+            }
+            catch
+            {
+                // do nothing
+            }
 
             WriteObject(rdsUser);            
         }        

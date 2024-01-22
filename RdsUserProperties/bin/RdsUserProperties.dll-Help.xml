@@ -172,9 +172,9 @@
             <maml:uri />
           </dev:type>
         </command:parameter>
-        <!-- Parameter: DenyLogon -->
+        <!-- Parameter: AllowLogon -->
         <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
-          <maml:name>DenyLogon</maml:name>
+          <maml:name>AllowLogon</maml:name>
           <maml:description>
             <maml:para>Boolean value to allow or deny RDS access for the user.</maml:para>
           </maml:description>
@@ -332,9 +332,9 @@
           <maml:uri />
         </dev:type>
       </command:parameter>
-      <!-- Parameter: DenyLogon -->
+      <!-- Parameter: AllowLogon -->
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
-        <maml:name>DenyLogon</maml:name>
+        <maml:name>AllowLogon</maml:name>
         <maml:description>
           <maml:para>Boolean value to allow or deny RDS access for the user.</maml:para>
         </maml:description>
@@ -366,7 +366,7 @@
       </command:example>
       <command:example>
         <maml:title>----------  EXAMPLE 2  ----------</maml:title>
-        <dev:code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath $null -TerminalServicesHomeDirectory = $null -DenyLogon = $true</dev:code>
+        <dev:code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath $null -TerminalServicesHomeDirectory = $null -AllowLogon = $true</dev:code>
       </command:example>
     </command:examples>
   </command:command>

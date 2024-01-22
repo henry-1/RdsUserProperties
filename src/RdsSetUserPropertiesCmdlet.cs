@@ -18,7 +18,7 @@ namespace RdsUserProperties
     ///   <code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath '\\fs1\RDSProfile\Account1' -TerminalServicesHomeDrive 't:' -TerminalServicesHomeDirectory '\\fs2\RDSHome\Account1' -DenyLogo $false</code>
     /// </example>
     /// <example>
-    ///   <code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath $null -TerminalServicesHomeDirectory = $null -DenyLogon = $true</code>
+    ///   <code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath $null -TerminalServicesHomeDirectory = $null -AllowLogon = $true</code>
     /// </example>
     [Cmdlet(VerbsCommon.Set, "RdsUserProperties")]
     [OutputType(typeof(RdsSetUserResult))]
@@ -73,9 +73,9 @@ namespace RdsUserProperties
         /// <para type="description">Boolean value to allow or deny RDS access for the user.</para>
         /// </summary>
         [Parameter(Mandatory = false,
-            HelpMessage = "Deny Logon through RDP Host",
+            HelpMessage = "Allow Logon through RDP Host",
             ValueFromPipeline = false)]
-        public bool DenyLogon { get; set; }
+        public bool AllowLogon { get; set; }
 
         /// <summary>
         /// <para type="description">The Powershell script.</para>
@@ -83,7 +83,7 @@ namespace RdsUserProperties
         protected override void ProcessRecord()
         {
             bool changed = false;
-            
+            int allowLogon = 1;
 
             var result = new RdsSetUserResult
             {
@@ -101,8 +101,7 @@ namespace RdsUserProperties
                     ServerName = ActiveDirectoryTools.GetDcName(domainName);
                 }
 
-                var AdsiPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);              
-                
+                var AdsiPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);   
 
                 result.Identity = AdsiPath;
 
@@ -121,20 +120,14 @@ namespace RdsUserProperties
                     changed = true;
                 }
 
-
                 if (this.MyInvocation.BoundParameters.Keys.Contains("TerminalServicesHomeDrive"))
                 {
-                    if (string.IsNullOrEmpty(this.TerminalServicesHomeDrive))
-                    {
-                        //user.InvokeSet("TerminalServicesHomeDrive", "");
-                    }
-                    else
+                    if (!string.IsNullOrEmpty(this.TerminalServicesHomeDrive))                    
                     {                        
                         user.InvokeSet("TerminalServicesHomeDrive", this.TerminalServicesHomeDrive);
                     }
                     changed = true;
-                }
-                
+                }                
                 
                 if (this.MyInvocation.BoundParameters.Keys.Contains("TerminalServicesHomeDirectory"))
                 {
@@ -149,7 +142,16 @@ namespace RdsUserProperties
                     changed = true;
                 }
 
-                if(changed)
+                if (this.MyInvocation.BoundParameters.Keys.Contains("AllowLogon"))
+                {
+                    if(false == AllowLogon)
+                        allowLogon = 0;
+                    
+                    user.InvokeSet(propertyName: "AllowLogon", allowLogon);
+                    changed = true;
+                }
+
+                if (changed)
                     user.CommitChanges();
 
                 result.Result = "Success";
