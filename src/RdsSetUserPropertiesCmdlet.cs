@@ -46,6 +46,24 @@ namespace RdsUserProperties
         public string ServerName { get; set; }
 
         /// <summary>
+        /// <para type="description">Login name for AD connection.</para>
+        /// </summary>
+        [Parameter(Mandatory = false,
+            HelpMessage = "Login name for AD connection",
+            ValueFromPipelineByPropertyName = false)]
+        [Alias("LoginName", "AccountName")]
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// <para type="description">Login name for AD connection.</para>
+        /// </summary>
+        [Parameter(Mandatory = false,
+            HelpMessage = "Password for AD connection",
+            ValueFromPipelineByPropertyName = false)]
+        [Alias("PWD")]
+        public string Password { get; set; }
+
+        /// <summary>
         /// <para type="description">Shared folder path for the users TS profile.</para>
         /// </summary>
         [Parameter(Mandatory = false,
@@ -82,8 +100,10 @@ namespace RdsUserProperties
         /// </summary>
         protected override void ProcessRecord()
         {
+            DirectoryEntry user;
             bool changed = false;
             int allowLogon = 1;
+            string ADSIPath;
 
             var result = new RdsSetUserResult
             {
@@ -101,11 +121,27 @@ namespace RdsUserProperties
                     ServerName = ActiveDirectoryTools.GetDcName(domainName);
                 }
 
-                var AdsiPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);   
+                ADSIPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);   
 
-                result.Identity = AdsiPath;
+                result.Identity = ADSIPath;
 
-                var user = new DirectoryEntry(AdsiPath);                
+                if (string.IsNullOrEmpty(this.UserName) || string.IsNullOrEmpty(this.Password))
+                {
+                    user = new DirectoryEntry
+                    {
+                        Path = ADSIPath
+                    };
+                }
+                else
+                {
+                    user = new DirectoryEntry
+                    {
+                        Path = ADSIPath,
+                        Username = UserName,
+                        Password = Password,
+                        AuthenticationType = AuthenticationTypes.Secure
+                    };
+                }
 
                 if (this.MyInvocation.BoundParameters.Keys.Contains("TerminalServicesProfilePath"))
                 {
