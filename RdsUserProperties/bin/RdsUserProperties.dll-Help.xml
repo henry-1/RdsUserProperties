@@ -12,6 +12,7 @@
     </command:details>
     <maml:description>
       <maml:para>This cmdlet can be used to read properties on the Remote Desktop Services Profile Tab.</maml:para>
+      <maml:para>Returns $null is something went wrong.</maml:para>
     </maml:description>
     <command:syntax>
       <!-- Parameter set: __AllParameterSets -->
@@ -29,11 +30,35 @@
             <maml:uri />
           </dev:type>
         </command:parameter>
+        <!-- Parameter: Password -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
+          <maml:name>Password</maml:name>
+          <maml:description>
+            <maml:para>Login name for AD connection.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
         <!-- Parameter: ServerName -->
         <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
           <maml:name>ServerName</maml:name>
           <maml:description>
             <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <!-- Parameter: UserName -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
+          <maml:name>UserName</maml:name>
+          <maml:description>
+            <maml:para>Login name for AD connection.</maml:para>
           </maml:description>
           <command:parameterValue required="true">string</command:parameterValue>
           <dev:type>
@@ -97,6 +122,66 @@
         <maml:description>
           <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
           <maml:para>This is an alias of the ServerName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: UserName -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
+        <maml:name>UserName</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
+        <maml:name>LoginName</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+          <maml:para>This is an alias of the UserName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
+        <maml:name>AccountName</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+          <maml:para>This is an alias of the UserName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: Password -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
+        <maml:name>Password</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
+        <maml:name>PWD</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+          <maml:para>This is an alias of the Password parameter.</maml:para>
         </maml:description>
         <command:parameterValue required="true">string</command:parameterValue>
         <dev:type>
@@ -185,6 +270,18 @@
           </dev:type>
           <dev:defaultValue>False</dev:defaultValue>
         </command:parameter>
+        <!-- Parameter: Password -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
+          <maml:name>Password</maml:name>
+          <maml:description>
+            <maml:para>Login name for AD connection.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
         <!-- Parameter: ServerName -->
         <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
           <maml:name>ServerName</maml:name>
@@ -226,6 +323,18 @@
           <maml:name>TerminalServicesProfilePath</maml:name>
           <maml:description>
             <maml:para>Shared folder path for the users TS profile.</maml:para>
+          </maml:description>
+          <command:parameterValue required="true">string</command:parameterValue>
+          <dev:type>
+            <maml:name>System.String</maml:name>
+            <maml:uri />
+          </dev:type>
+        </command:parameter>
+        <!-- Parameter: UserName -->
+        <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
+          <maml:name>UserName</maml:name>
+          <maml:description>
+            <maml:para>Login name for AD connection.</maml:para>
           </maml:description>
           <command:parameterValue required="true">string</command:parameterValue>
           <dev:type>
@@ -289,6 +398,66 @@
         <maml:description>
           <maml:para>Domain Controller name. Must be a DC of the users domain because RDS properties aren't part of the partial attribute set.</maml:para>
           <maml:para>This is an alias of the ServerName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: UserName -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
+        <maml:name>UserName</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
+        <maml:name>LoginName</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+          <maml:para>This is an alias of the UserName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
+        <maml:name>AccountName</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+          <maml:para>This is an alias of the UserName parameter.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <!-- Parameter: Password -->
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
+        <maml:name>Password</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true">string</command:parameterValue>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+          <maml:uri />
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
+        <maml:name>PWD</maml:name>
+        <maml:description>
+          <maml:para>Login name for AD connection.</maml:para>
+          <maml:para>This is an alias of the Password parameter.</maml:para>
         </maml:description>
         <command:parameterValue required="true">string</command:parameterValue>
         <dev:type>

@@ -8,16 +8,16 @@ namespace RdsUserProperties
     /// <summary>
     /// <para type="synopsis">Get RDS User properties in Active Directory</para>
     /// <para type="description">This cmdlet can be used to read properties on the Remote Desktop Services Profile Tab.</para>    
-    /// <para type="note">TSUSEREXLib must registered: regsvr32 -u Interop.TSUSEREXLib.dll</para>
+    /// <para type="description">Returns $null is something went wrong.</para>
     /// </summary>
     /// <example>   
-    ///   <code>Get-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD'</code>
+    ///   <code>Get-RDSUserProperties -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD'</code>
     /// </example>
     /// <example>   
-    ///   <code>Get-RDSUserProperties  -Identity Account1</code>
+    ///   <code>Get-RDSUserProperties -Identity Account1</code>
     /// </example>
     /// <example>   
-    ///   <code>Get-RDSUserProperties  -Identity Account1@MyDomain.TLD</code>
+    ///   <code>Get-RDSUserProperties -Identity Account1@MyDomain.TLD</code>
     /// </example>
     [Cmdlet(VerbsCommon.Get, "RdsUserProperties")]
     [OutputType(typeof(RdsUser))]

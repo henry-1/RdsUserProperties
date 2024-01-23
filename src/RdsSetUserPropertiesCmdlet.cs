@@ -12,13 +12,12 @@ namespace RdsUserProperties
     /// <para type="description">This cmdlet can be used to set properties on the Remote Desktop Services Profile Tab.</para>   
     /// <para type="note">Values of user properties are removed in case no value is given for the corresponding cmdlet parameter.</para>
     /// <para type="note">TerminalServicesHomeDirectory when used in conjunction with TerminalServicesHomeDirectory must be a shared folder. Otherwise it can be a local path.</para>
-    /// <para type="note">TSUSEREXLib must registered: regsvr32 -u Interop.TSUSEREXLib.dll</para>
     /// </summary>
     /// <example>
-    ///   <code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath '\\fs1\RDSProfile\Account1' -TerminalServicesHomeDrive 't:' -TerminalServicesHomeDirectory '\\fs2\RDSHome\Account1' -DenyLogo $false</code>
+    ///   <code>Set-RDSUserProperties -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath '\\fs1\RDSProfile\Account1' -TerminalServicesHomeDrive 't:' -TerminalServicesHomeDirectory '\\fs2\RDSHome\Account1' -DenyLogo $false</code>
     /// </example>
     /// <example>
-    ///   <code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath $null -TerminalServicesHomeDirectory = $null -AllowLogon = $true</code>
+    ///   <code>Set-RDSUserProperties -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath $null -TerminalServicesHomeDirectory = $null -AllowLogon = $true</code>
     /// </example>
     [Cmdlet(VerbsCommon.Set, "RdsUserProperties")]
     [OutputType(typeof(RdsSetUserResult))]
