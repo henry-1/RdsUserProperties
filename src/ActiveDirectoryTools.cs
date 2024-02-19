@@ -12,7 +12,7 @@ namespace RdsUserProperties
         {
             if (Identity.StartsWith("CN="))
             {
-                return Identity;
+                return string.Format("(&(ObjectCategory=user)(ObjectClass=person)(distinguishedName={0}))", Identity);
             }            
 
             if (Identity.Contains('@'))
