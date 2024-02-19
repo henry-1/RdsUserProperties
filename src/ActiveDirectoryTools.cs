@@ -29,35 +29,6 @@ namespace RdsUserProperties
             return string.Format("(&(ObjectCategory=user)(ObjectClass=person)(sAMAccountName={0}))", Identity);
         }
 
-        /*
-        #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public static string GetDistinguishedName(string Identity)
-        #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
-        {
-            var filter = GetFilter(Identity);
-
-            var currentDomain = string.Format("DC={0}", (System.DirectoryServices.ActiveDirectory.Domain.GetCurrentDomain()).Name.Replace(".", ",DC="));
-            var searchRootPath = string.Format("GC://{0}", currentDomain);
-            DirectoryEntry searchRoot = new DirectoryEntry(searchRootPath);
-
-            var ds = new DirectorySearcher
-            {
-                Filter = filter,
-                PageSize = 1,
-                SearchRoot = searchRoot
-            };
-
-            var user = ds.FindOne();
-            if (user is null)
-            {
-                Exception exception = new Exception("Unable to find user.");
-                throw exception;
-            }
-
-            return user.Properties["adsPath"].Cast<string>().FirstOrDefault().Replace("GC://", "");
-        }
-        */
-
         #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
         public static string GetDistinguishedName(string Identity, string UserName, string Password, string ServerName)
         #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member

@@ -70,7 +70,7 @@ namespace RdsUserProperties
         /// </summary>
         protected override void ProcessRecord()
         {
-            // -nologo -command "&{ Import-Module 'D:\VisualStudioProjects\RdsUserProperties\src\bin\Debug\RdsUserProperties.dll'; Get-RdsUserProperties -Identity '4013388'; }"
+            // -nologo -command "&{ Import-Module '.\RdsUserProperties.dll'; Get-RdsUserProperties -Identity '4013388'; }"
 
             DirectoryEntry user;
             Identity = ActiveDirectoryTools.GetDistinguishedName(Identity, UserName, Password, ServerName);
