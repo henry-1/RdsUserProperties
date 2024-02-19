@@ -41,6 +41,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
+          <dev:defaultValue></dev:defaultValue>
         </command:parameter>
         <!-- Parameter: ServerName -->
         <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
@@ -53,6 +54,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
+          <dev:defaultValue></dev:defaultValue>
         </command:parameter>
         <!-- Parameter: UserName -->
         <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
@@ -65,6 +67,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
+          <dev:defaultValue></dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -104,6 +107,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
         <maml:name>DomainController</maml:name>
@@ -116,6 +120,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
         <maml:name>DC</maml:name>
@@ -128,6 +133,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <!-- Parameter: UserName -->
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
@@ -140,6 +146,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
         <maml:name>LoginName</maml:name>
@@ -152,6 +159,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
         <maml:name>AccountName</maml:name>
@@ -164,6 +172,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <!-- Parameter: Password -->
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
@@ -176,6 +185,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
         <maml:name>PWD</maml:name>
@@ -188,6 +198,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
     </command:parameters>
     <command:inputTypes>
@@ -216,15 +227,15 @@
     <command:examples>
       <command:example>
         <maml:title>----------  EXAMPLE 1  ----------</maml:title>
-        <dev:code>Get-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD'</dev:code>
+        <dev:code>Get-RDSUserProperties -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD'</dev:code>
       </command:example>
       <command:example>
         <maml:title>----------  EXAMPLE 2  ----------</maml:title>
-        <dev:code>Get-RDSUserProperties  -Identity Account1</dev:code>
+        <dev:code>Get-RDSUserProperties -Identity Account1</dev:code>
       </command:example>
       <command:example>
         <maml:title>----------  EXAMPLE 3  ----------</maml:title>
-        <dev:code>Get-RDSUserProperties  -Identity Account1@MyDomain.TLD</dev:code>
+        <dev:code>Get-RDSUserProperties -Identity Account1@MyDomain.TLD</dev:code>
       </command:example>
     </command:examples>
   </command:command>
@@ -281,6 +292,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
+          <dev:defaultValue></dev:defaultValue>
         </command:parameter>
         <!-- Parameter: ServerName -->
         <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
@@ -293,6 +305,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
+          <dev:defaultValue></dev:defaultValue>
         </command:parameter>
         <!-- Parameter: TerminalServicesHomeDirectory -->
         <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
@@ -341,6 +354,7 @@
             <maml:name>System.String</maml:name>
             <maml:uri />
           </dev:type>
+          <dev:defaultValue></dev:defaultValue>
         </command:parameter>
       </command:syntaxItem>
     </command:syntax>
@@ -380,6 +394,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
         <maml:name>DomainController</maml:name>
@@ -392,6 +407,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="DomainController,DC">
         <maml:name>DC</maml:name>
@@ -404,6 +420,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <!-- Parameter: UserName -->
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
@@ -416,6 +433,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
         <maml:name>LoginName</maml:name>
@@ -428,6 +446,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="LoginName,AccountName">
         <maml:name>AccountName</maml:name>
@@ -440,6 +459,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <!-- Parameter: Password -->
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
@@ -452,6 +472,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named" aliases="PWD">
         <maml:name>PWD</maml:name>
@@ -464,6 +485,7 @@
           <maml:name>System.String</maml:name>
           <maml:uri />
         </dev:type>
+        <dev:defaultValue></dev:defaultValue>
       </command:parameter>
       <!-- Parameter: TerminalServicesProfilePath -->
       <command:parameter required="false" globbing="false" pipelineInput="false" position="named">
@@ -531,11 +553,11 @@
     <command:examples>
       <command:example>
         <maml:title>----------  EXAMPLE 1  ----------</maml:title>
-        <dev:code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath '\\fs1\RDSProfile\Account1' -TerminalServicesHomeDrive 't:' -TerminalServicesHomeDirectory '\\fs2\RDSHome\Account1' -DenyLogo $false</dev:code>
+        <dev:code>Set-RDSUserProperties -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath '\\fs1\RDSProfile\Account1' -TerminalServicesHomeDrive 't:' -TerminalServicesHomeDirectory '\\fs2\RDSHome\Account1' -DenyLogo $false</dev:code>
       </command:example>
       <command:example>
         <maml:title>----------  EXAMPLE 2  ----------</maml:title>
-        <dev:code>Set-RDSUserProperties  -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath $null -TerminalServicesHomeDirectory = $null -AllowLogon = $true</dev:code>
+        <dev:code>Set-RDSUserProperties -Identity 'CN=Account1,OU=Office,OU=Users,OU=MyDomain,DC=TLD' -ServerName 'dc1.MyDomain.TLD' -TerminalServicesProfilePath $null -TerminalServicesHomeDirectory = $null -AllowLogon = $true</dev:code>
       </command:example>
     </command:examples>
   </command:command>

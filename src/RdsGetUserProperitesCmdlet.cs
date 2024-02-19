@@ -1,7 +1,6 @@
 ﻿using System.DirectoryServices;
 using System.Management.Automation;
-using System;
-using System.IO;
+
 
 namespace RdsUserProperties
 {
@@ -44,7 +43,7 @@ namespace RdsUserProperties
               RDS Attributes are not Part of the Partial Attribute Set.",
             ValueFromPipelineByPropertyName = false)]
         [Alias("DomainController", "DC")]
-        public string ServerName { get; set; }
+        public string ServerName { get; set; } = string.Empty;
 
 
         /// <summary>
@@ -53,8 +52,8 @@ namespace RdsUserProperties
         [Parameter(Mandatory = false,
             HelpMessage = "Login name for AD connection",
             ValueFromPipelineByPropertyName = false)]
-        [Alias("LoginName","AccountName")]
-        public string UserName { get; set; }
+        [Alias("LoginName", "AccountName")]
+        public string UserName { get; set; } = string.Empty;
 
         /// <summary>
         /// <para type="description">Login name for AD connection.</para>
@@ -63,7 +62,7 @@ namespace RdsUserProperties
             HelpMessage = "Password for AD connection",
             ValueFromPipelineByPropertyName = false)]
         [Alias("PWD")]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
 
         /// <summary>
@@ -71,33 +70,31 @@ namespace RdsUserProperties
         /// </summary>
         protected override void ProcessRecord()
         {
+            // -nologo -command "&{ Import-Module 'D:\VisualStudioProjects\RdsUserProperties\src\bin\Debug\RdsUserProperties.dll'; Get-RdsUserProperties -Identity '4013388'; }"
+
             DirectoryEntry user;
-            Identity = ActiveDirectoryTools.GetDistinguishedName(Identity);
-            string ADSIPath;
+            Identity = ActiveDirectoryTools.GetDistinguishedName(Identity, UserName, Password, ServerName);
+            
+            string ADSIPath = Identity;
 
             if (string.IsNullOrEmpty(this.ServerName))
             {
                 var domainName = ActiveDirectoryTools.GetDomainName(Identity);
-                ServerName = ActiveDirectoryTools.GetDcName(domainName);                
+                ServerName = ActiveDirectoryTools.GetDcName(domainName);
+                ADSIPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);
             }
-            ADSIPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);
 
-            if (string.IsNullOrEmpty(this.UserName) || string.IsNullOrEmpty(this.Password))
+            user = new DirectoryEntry
             {
-                user = new DirectoryEntry
-                {
-                    Path = ADSIPath
-                };
-            }else
+                Path = ADSIPath
+            };
+
+            if (!string.IsNullOrEmpty(this.UserName) && !string.IsNullOrEmpty(this.Password))
             {
-                user = new DirectoryEntry
-                {
-                    Path = ADSIPath,
-                    Username = UserName,
-                    Password = Password,
-                    AuthenticationType = AuthenticationTypes.Secure
-                };
-            }           
+                user.Username = UserName;
+                user.Password = Password;
+                user.AuthenticationType = AuthenticationTypes.Secure;
+            }
 
             if (user is null)
             {                

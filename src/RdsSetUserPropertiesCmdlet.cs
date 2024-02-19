@@ -42,7 +42,7 @@ namespace RdsUserProperties
               RDS Attributes are not Part of the Partial Attribute Set.",
             ValueFromPipeline = false)]
         [Alias("DomainController", "DC")]
-        public string ServerName { get; set; }
+        public string ServerName { get; set; } = string.Empty;
 
         /// <summary>
         /// <para type="description">Login name for AD connection.</para>
@@ -51,7 +51,7 @@ namespace RdsUserProperties
             HelpMessage = "Login name for AD connection",
             ValueFromPipelineByPropertyName = false)]
         [Alias("LoginName", "AccountName")]
-        public string UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
         /// <summary>
         /// <para type="description">Login name for AD connection.</para>
@@ -60,7 +60,7 @@ namespace RdsUserProperties
             HelpMessage = "Password for AD connection",
             ValueFromPipelineByPropertyName = false)]
         [Alias("PWD")]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         /// <summary>
         /// <para type="description">Shared folder path for the users TS profile.</para>
@@ -99,10 +99,10 @@ namespace RdsUserProperties
         /// </summary>
         protected override void ProcessRecord()
         {
+            // -nologo -command "&{ Import-Module 'D:\VisualStudioProjects\RdsUserProperties\src\bin\Debug\RdsUserProperties.dll'; Set-RdsUserProperties -Identity 4013388 -TerminalServicesHomeDirectory '\\marvel-dc\RDSHome\4013388' -TerminalServicesHomeDrive 'h:' -UserName spadmin -Password Password1 -ServerName marvel-dc.marvel.net}"
             DirectoryEntry user;
             bool changed = false;
-            int allowLogon = 1;
-            string ADSIPath;
+            int allowLogon = 1;            
 
             var result = new RdsSetUserResult
             {
@@ -112,35 +112,29 @@ namespace RdsUserProperties
 
             try
             {
-                Identity = ActiveDirectoryTools.GetDistinguishedName(Identity);
+                Identity = ActiveDirectoryTools.GetDistinguishedName(Identity, UserName, Password, ServerName);
+                string ADSIPath = Identity;
 
-                if (this.ServerName is null)
+                if (string.IsNullOrEmpty(ServerName))
                 {
                     var domainName = ActiveDirectoryTools.GetDomainName(Identity);
                     ServerName = ActiveDirectoryTools.GetDcName(domainName);
-                }
-
-                ADSIPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);   
+                    ADSIPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);
+                }                
 
                 result.Identity = ADSIPath;
 
-                if (string.IsNullOrEmpty(this.UserName) || string.IsNullOrEmpty(this.Password))
+                user = new DirectoryEntry
                 {
-                    user = new DirectoryEntry
-                    {
-                        Path = ADSIPath
-                    };
-                }
-                else
+                    Path = ADSIPath
+                };
+
+                if (!string.IsNullOrEmpty(this.UserName) && !string.IsNullOrEmpty(this.Password))
                 {
-                    user = new DirectoryEntry
-                    {
-                        Path = ADSIPath,
-                        Username = UserName,
-                        Password = Password,
-                        AuthenticationType = AuthenticationTypes.Secure
-                    };
-                }
+                    user.Username = UserName;
+                    user.Password = Password;
+                    user.AuthenticationType = AuthenticationTypes.Secure;
+                }                
 
                 if (this.MyInvocation.BoundParameters.Keys.Contains("TerminalServicesProfilePath"))
                 {
