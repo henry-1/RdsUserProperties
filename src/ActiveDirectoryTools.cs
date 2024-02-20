@@ -13,7 +13,7 @@ namespace RdsUserProperties
             if (Identity.StartsWith("CN="))
             {
                 return string.Format("(&(ObjectCategory=user)(ObjectClass=person)(distinguishedName={0}))", Identity);
-            }            
+            }
 
             if (Identity.Contains('@'))
             {
@@ -30,17 +30,27 @@ namespace RdsUserProperties
         }
 
         #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-        public static string GetDistinguishedName(string Identity, string UserName, string Password, string ServerName)
+        public static string GetAdsPath(string Identity, string UserName, string Password, string ServerName)
         #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         {
-            var filter = GetFilter(Identity);
+            string adsPath;
+            string searchRootPath = string.Empty;
 
-            var currentDomain = string.Format("DC={0}", (System.DirectoryServices.ActiveDirectory.Domain.GetCurrentDomain()).Name.Replace(".", ",DC="));
-            var searchRootPath = string.Format("GC://{0}", currentDomain);
+            if (Identity.StartsWith("CN=") && !string.IsNullOrEmpty(ServerName))
+            {
+                adsPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);
+                return adsPath;
+            }                                   
 
             if(!string.IsNullOrEmpty(ServerName))
             {
                 searchRootPath = string.Format("LDAP://{0}", ServerName);
+            }
+            
+            if(string.IsNullOrEmpty(searchRootPath))
+            {
+                var currentDomain = string.Format("DC={0}", (System.DirectoryServices.ActiveDirectory.Domain.GetCurrentDomain()).Name.Replace(".", ",DC="));
+                searchRootPath = string.Format("GC://{0}", currentDomain);
             }
             
             var searchRoot = new DirectoryEntry
@@ -54,6 +64,7 @@ namespace RdsUserProperties
                 searchRoot.AuthenticationType = AuthenticationTypes.Secure;
             }
 
+            var filter = GetFilter(Identity);
             var ds = new DirectorySearcher
             {
                 Filter = filter,
@@ -74,7 +85,7 @@ namespace RdsUserProperties
             }
 
             var user = users[0];
-            var adsPath = user.Properties["adsPath"].Cast<string>().FirstOrDefault();
+            adsPath = user.Properties["adsPath"].Cast<string>().FirstOrDefault();
 
             // "GC://CN=thor,OU=Artus,OU=Users,OU=Avengers,DC=marvel,DC=net"
             if (adsPath.StartsWith("GC://"))

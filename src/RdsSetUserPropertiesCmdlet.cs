@@ -112,8 +112,7 @@ namespace RdsUserProperties
 
             try
             {
-                Identity = ActiveDirectoryTools.GetDistinguishedName(Identity, UserName, Password, ServerName);
-                string ADSIPath = Identity;
+                string ADSIPath = ActiveDirectoryTools.GetAdsPath(Identity, UserName, Password, ServerName);
 
                 if (string.IsNullOrEmpty(ServerName))
                 {

@@ -73,9 +73,7 @@ namespace RdsUserProperties
             // -nologo -command "&{ Import-Module '.\RdsUserProperties.dll'; Get-RdsUserProperties -Identity '4013388'; }"
 
             DirectoryEntry user;
-            Identity = ActiveDirectoryTools.GetDistinguishedName(Identity, UserName, Password, ServerName);
-            
-            string ADSIPath = Identity;
+            string ADSIPath = ActiveDirectoryTools.GetAdsPath(Identity, UserName, Password, ServerName);
 
             if (string.IsNullOrEmpty(this.ServerName))
             {
@@ -84,17 +82,23 @@ namespace RdsUserProperties
                 ADSIPath = string.Format("LDAP://{0}/{1}", ServerName, Identity);
             }
 
-            user = new DirectoryEntry
-            {
-                Path = ADSIPath
-            };
-
             if (!string.IsNullOrEmpty(this.UserName) && !string.IsNullOrEmpty(this.Password))
             {
-                user.Username = UserName;
-                user.Password = Password;
-                user.AuthenticationType = AuthenticationTypes.Secure;
+                user = new DirectoryEntry
+                {
+                    Path = ADSIPath,
+                    Username = UserName,
+                    Password = Password,
+                    AuthenticationType = AuthenticationTypes.Secure
+                };
             }
+            else
+            {
+                user = new DirectoryEntry
+                {
+                    Path = ADSIPath
+                };
+            }        
 
             if (user is null)
             {                
@@ -135,5 +139,4 @@ namespace RdsUserProperties
             WriteObject(rdsUser);            
         }        
     }   
-
 }
